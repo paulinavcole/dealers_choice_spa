@@ -19,6 +19,30 @@ app.get('/api/tasks', async(req, res, next) => {
     }
 });
 
+app.delete('/api/tasks/:id', async(req, res, next) => {
+    try {
+        const task = await Task.findByPk(req.params.id);
+        await task.destroy();
+        res.sendStatus(204);
+    }
+    catch(ex) {
+        next(ex);
+    }
+});
+
+app.post('/api/tasks', async(req, res, next) => {
+    try {
+        res.status(201).send(await Task.create(req.body));
+    }
+    catch(ex) {
+        next(ex);
+    }
+});
+
+app.use((err, req, res, next) =>  {
+    console.log(err);
+    res.status(500).send(err);
+})
 
 const init = async() => {
     try {
