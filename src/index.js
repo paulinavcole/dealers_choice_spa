@@ -1,24 +1,24 @@
 const axios = require('axios');
-const toDoList = document.querySelector('#to-do list');
+const taskList = document.querySelector('#task-list');
 const state = {};
 
-const renderToDos = () => {
-    const html = state.toDo.map(toDo => {
+const renderTasks = () => {
+    const html = state.tasks.map(task => {
         return `
             <li>
-            ${toDo.name}
-            <button data-id='${toDo.id}'>X</button>
+            ${task.name}
+            <button data-id='${task.id}'>X</button>
             <li>
         `;
     }).join('');
-    toDoList.innerHTML = html
+    taskList.innerHTML = html
 }
 
-const fetchToDos = async() => {
-    const response = await axios.get('/api/todos');
+const fetchTasks = async() => {
+    const response = await axios.get('/api/tasks');
     const data = response.data;
-    state.toDo = data;
-    renderToDos();
+    state.tasks = data;
+    renderTasks();
 }
 
-fetchToDos();
+fetchTasks();
