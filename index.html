@@ -5,11 +5,14 @@
         <script src="/dist/main.js" defer></script>
     </head>
     <body>
-        <h1>To Do List</h1>
+        <div class="header">
+            <h1>To Do List</h1>
+        </div>
         <form>
-            <input/>
-            <button>Add Task!</button>
+            <input id="add-tasks" placeholder="Enter a new Task!"/>
+            <button class="addBtn">Add Task!</button>
         </form>
+        <h2>Click on a task to check it off!</h2>
         <ul id="task-list"></ul>
     </body>
 </html>
